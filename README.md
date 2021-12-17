@@ -12,13 +12,13 @@ Using an Azure Load Test resource for traffic, then App Insights query to compar
 ## Diagram
 
 ```
-              ┌────────────────────────────┐
-              │                            │
-              │                            │
-              │       API Management       │
-              │                            │
-              │                            │
-              └──────┬─────────────┬───────┘
+              ┌────────────────────────────┐                   ┌──────────────────┐
+              │                            │                   │                  │
+              │                            │                   │                  │
+              │       API Management       ◄───────────────────┤   Load Testing   │
+              │                            │                   │                  │
+              │                            │                   │                  │
+              └──────┬─────────────┬───────┘                   └──────────────────┘
                      │             │
                      │             │
                      │             │
