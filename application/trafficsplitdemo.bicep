@@ -42,26 +42,14 @@ module app2 '../archetype/apimWebApp.bicep' = {
   ]
 }
 
-var apiName = 'MyTrafficSplitApp'
-@description('Using a module to uniformly create api')
-module appApi '../foundation/apim-api.bicep' = {
-  name: 'appApi-apim-${resNameSeed}'
+module apiConfig 'trafficsplitdemo-apiconfig.bicep' = {
+  name: 'apiconfig-${resNameSeed}'
   params: {
-    apimName: app1.outputs.ApimName
     apimLoggerId: app1.outputs.ApimLoggerId
-    AppInsightsName: app1.outputs.AppInsightsName
-    servicename: apiName
-    baseUrl: 'https://${app1.outputs.ApplicationUrl}'
-    serviceApimPath: 'test'
-    serviceDisplayName: 'MyTrafficSplitApp'
-    apimSubscriptionRequired: false
-    apis: [
-      {
-        method: 'GET'
-        urlTemplate: '/api/context'
-        displayName : 'Get Api Context'
-        name: 'GetContext'
-      }
-    ]
+    apiBaseUrl: 'https://${app1.outputs.ApplicationUrl}'
+    apimName: app1.outputs.ApimName
+    resNameSeed: resNameSeed
+    appInsightsName: app1.outputs.AppInsightsName
+    apiOverrideUrl: 'https://${app2.outputs.ApplicationUrl}'
   }
 }

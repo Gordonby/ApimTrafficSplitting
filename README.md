@@ -68,4 +68,8 @@ Using an Azure Load Test resource for traffic, then App Insights query to compar
 
 ## APIM Policy
 
-Two APIM policies are used. One sets a variable
+
+
+## More Reading
+
+[set-backend-service](https://docs.microsoft.com/en-us/azure/api-management/api-management-transformation-policies#SetBackendService)

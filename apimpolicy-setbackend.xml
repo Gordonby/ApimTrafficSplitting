@@ -1,8 +1,0 @@
-<policies>
-    <inbound>
-        <base />
-        <when condition="@(context.Variables.GetValueOrDefault<string>("apiBaseUrl")) != '')">
-            <set-backend-service base-url="@(context.Variables.GetValueOrDefault<string>("apiBaseUrl"))" />
-        </otherwise>
-    </inbound>
-</policies>
