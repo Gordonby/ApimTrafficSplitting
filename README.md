@@ -5,6 +5,20 @@ A demonstration of using APIM for traffic splitting, useful when the underlying 
 
 Using an APIM policy, for traffic splitting.
 
+## Implementation
+
+Azure API Management does not come with a traffic splitting policy/algorithm. Fortunately it does leverage C# and some .NET Framework types in the policy expression engine. We can therefore use a simple Random function to randomly create a number between 1 and 100, then allocate the traffic based off that number. All things working as they should, we have a simple but effective way of balancing load.
+
+This can be leveraged in the following types of scenario
+
+- Canary (by sending a small percentage of traffic)
+- Blue/Green
+- Staged Migrations
+
+## Anti pattern
+
+Where using an Azure service that supports traffic splitting (like App Service, or Service Mesh in AKS) that should be the way to implement this capability. Where this is not possible
+
 ## Demonstration
 
 Using an Azure Load Test resource for traffic, then App Insights query to compare traffic volumes.
@@ -49,3 +63,9 @@ Using an Azure Load Test resource for traffic, then App Insights query to compar
                 │                       │
                 └───────────────────────┘
 ```
+
+## Bicep
+
+## APIM Policy
+
+Two APIM policies are used. One sets a variable

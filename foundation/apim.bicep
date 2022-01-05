@@ -18,7 +18,7 @@ param publisherName string = 'Gobyers'
 ])
 param sku string = 'Consumption'
 
-param useRedisCache bool = true
+param useRedisCache bool = false
 
 @description('The email address of the owner of the service')
 @minLength(1)
@@ -82,27 +82,28 @@ resource AppInsights 'Microsoft.Insights/components@2020-02-02' existing = if(!e
   name: AppInsightsName
 }
 
+var redisName = 'redis-${nameSeed}'
 module redis 'redis.bicep' = if(useRedisCache) {
-  name: 'apim-redis'
+  name: 'redis-apim-${nameSeed}'
   params: {
     nameSeed: nameSeed
+    redisName: redisName
     logId: logId
   }
 }
 
-resource apimcache 'Microsoft.ApiManagement/service/caches@2021-04-01-preview' = if(useRedisCache) {
-  name: resourceGroup().location
-  parent: apim
-  properties: {
-    connectionString: redis.outputs.redisconnectionstring
-    useFromLocation: resourceGroup().location
-    description: redis.outputs.redishostnmame
-    resourceId: redis.outputs.redisfullresourceid
+@description('We need to use a module for the config to ensure both Redis and APIM have been created to avoid both prematurely invoking ListKeys, and to avoid using outputs for keys/secrets')
+module apimRedisCacheConfig 'apim-cacheconfig.bicep' = if(useRedisCache) {
+  name: 'cacheconfig-apim-${nameSeed}'
+  params: {
+    redisName: useRedisCache ? redis.outputs.name : ''
+    apimName: apim.name
   }
 }
 
 // Create Logger and link logger
-resource apimLogger 'Microsoft.ApiManagement/service/loggers@2019-12-01' = {
+param createLogger bool = true
+resource apimLogger 'Microsoft.ApiManagement/service/loggers@2019-12-01' = if(createLogger) {
   name: '${apim.name}/${apim.name}-logger'
   properties:{
     resourceId: AppInsights.id
@@ -113,3 +114,4 @@ resource apimLogger 'Microsoft.ApiManagement/service/loggers@2019-12-01' = {
     description: 'APIM logger for Application Insights'
   }
 }
+output loggerId string = createLogger ? apimLogger.id : ''
