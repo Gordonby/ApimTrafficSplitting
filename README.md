@@ -29,10 +29,14 @@ The infrastructure we are creating focusses on
 - 2 Function Apps with the dummy API
 - App Insights to log the function App telemetry
 
+The bicep deployment deploys the code to the Function Apps as well as all the necessary configuration of APIM.
+
 ## APIM Policy
 
 An APIM policy provides the opportunity to manipulate requests that are proxied by API Management.
 The policy overrides the base-url based on the comparison of the randomly generated number and the specified traffic weight split value.
+
+The values for weight and override url are taken from [Named Values](https://docs.microsoft.com/en-us/azure/api-management/api-management-howto-properties) that are defined in the bicep files.
 
 ```xml
         <choose>
