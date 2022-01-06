@@ -7,7 +7,7 @@ Using an Azure API Management policy, for traffic splitting API calls based on a
 
 ## Implementation
 
-Azure API Management does not come with a traffic splitting policy/algorithm. Fortunately it does leverage C# and some .NET Framework types in the policy expression engine. We can therefore use a simple Random function to randomly create a number between 1 and 100, then allocate the traffic based off that number. All things working as they should, we have a simple but effective way of balancing load.
+Azure API Management does not come with a traffic splitting policy/algorithm. Fortunately it does leverage C# and some .NET Framework types in the policy expression engine. We can therefore use a simple Random function to randomly create a number, then allocate the traffic based off that number. All things working as they should, we have a simple but effective way of balancing load.
 
 This can be leveraged in the following types of scenario;
 
