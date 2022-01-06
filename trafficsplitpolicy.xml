@@ -2,7 +2,8 @@
     <inbound>
         <choose>
             <when condition="@(new System.Random().Next(0,100) &gt;= {{MyTrafficSplitApp_TrafficSplitWeight}})">
-                <!-- Do not change backend service, use the default specified in the API definition -->
+                <!-- Instead of setting for each, lets start with just overriding when not the default -->
+                <!-- <set-variable name="apiBaseUrl" value="{{app1}}" /> -->
             </when>
             <otherwise>
                 <set-backend-service base-url="{{MyTrafficSplitApp_TrafficBaseUrlOverride}}" />

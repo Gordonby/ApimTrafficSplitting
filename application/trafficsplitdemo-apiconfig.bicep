@@ -75,7 +75,7 @@ module appApi '../foundation/apim-api.bicep' = {
         name: 'GetContext'
       }
     ]
-    servicePolicyXmlUrl: 'https://raw.githubusercontent.com/Gordonby/Snippets/master/AzureApimPolicies/ChangeBackendOnRandom.xml'
+    servicePolicyXmlUrl: 'https://raw.githubusercontent.com/Gordonby/ApimTrafficSplitting/main/trafficsplitpolicy.xml'
   }
   dependsOn: [
     apimTrafficSplitAppConfig
