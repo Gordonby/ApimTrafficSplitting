@@ -1,3 +1,6 @@
+<!-- REF: https://github.com/Gordonby/ApimTrafficSplitting -->
+<!-- This policy overrides the backend baseurl to facilitate traffic splitting  -->
+<!-- Traffic weight percentage and Backend URL to override with is stored in APIM named values -->
 <policies>
     <inbound>
         <choose>

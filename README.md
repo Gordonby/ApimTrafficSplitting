@@ -46,6 +46,8 @@ The values for weight and override url are taken from [Named Values](https://doc
         </choose>
 ```
 
+The Policy is applied at the API level and would affect all API Operations defined under that API.
+
 ## Load testing
 
 In order to test the traffic splitting we need to send a lot of traffic through APIM.
