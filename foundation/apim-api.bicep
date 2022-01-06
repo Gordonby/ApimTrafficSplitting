@@ -70,13 +70,14 @@ resource apimService 'Microsoft.ApiManagement/service/apis@2021-04-01-preview' =
 }
 output serviceName string = apimService.name
 
-param servicePolicyXmlUrl string = ''
-resource serviceLevelPolicy 'Microsoft.ApiManagement/service/apis/policies@2021-04-01-preview' = if(servicePolicyXmlUrl != '') {
+//param servicePolicyXmlUrl string = ''
+param servicePolicyXml string = ''
+resource serviceLevelPolicy 'Microsoft.ApiManagement/service/apis/policies@2021-04-01-preview' = if(servicePolicyXml != '') {
   name: 'policy'
   parent: apimService
   properties: {
-    value: servicePolicyXmlUrl
-    format: 'xml-link'
+    value: servicePolicyXml
+    format: 'rawxml'
   }
 }
 

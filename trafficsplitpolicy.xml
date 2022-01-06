@@ -4,8 +4,8 @@
 <policies>
     <inbound>
         <choose>
-            <when condition="@(new System.Random().Next(1,100) &lt;= {{MyTrafficSplitApp_TrafficSplitWeight}})">
-                <set-backend-service base-url="{{MyTrafficSplitApp_TrafficBaseUrlOverride}}" />
+            <when condition="@(new System.Random().Next(1,100) &lt;= {{YOURAPINAME_TrafficSplitWeight}})">
+                <set-backend-service base-url="{{YOURAPINAME_TrafficBaseUrlOverride}}" />
             </when>
         </choose>
     </inbound>

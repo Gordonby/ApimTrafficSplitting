@@ -75,7 +75,8 @@ module appApi '../foundation/apim-api.bicep' = {
         name: 'GetContext'
       }
     ]
-    servicePolicyXmlUrl: 'https://raw.githubusercontent.com/Gordonby/ApimTrafficSplitting/main/trafficsplitpolicy.xml'
+    //servicePolicyXmlUrl: 'https://raw.githubusercontent.com/Gordonby/ApimTrafficSplitting/main/trafficsplitpolicy.xml'
+    servicePolicyXml: replace(loadTextContent('../trafficsplitpolicy.xml'),'{{YOURAPINAME_','{{${apiName}_')
   }
   dependsOn: [
     apimTrafficSplitAppConfig
