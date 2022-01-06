@@ -43,7 +43,7 @@ param AppGitRepoStagingBranch string = ''
 param AppSettings array = []
 
 module functionApp '../foundation/functionapp.bicep' = {
-  name: 'functionApp-${resNameSeed}'
+  name: 'functionApp-${appName}-${resNameSeed}'
   params: {
     appName: appName
     webAppName: webAppName
