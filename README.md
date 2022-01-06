@@ -17,7 +17,7 @@ This can be leveraged in the following types of scenario;
 
 ## Anti pattern
 
-Where using an Azure service that supports traffic splitting (like App Service, or Service Mesh in AKS) that should be the way to implement this capability. Where this is not possible, APIM can be used to provide this capability.
+Where using an Azure service that supports traffic splitting (like [App Service](https://docs.microsoft.com/en-us/azure/app-service/deploy-staging-slots#route-traffic), or [Service Mesh](https://docs.microsoft.com/en-us/azure/aks/servicemesh-about) in AKS) that should be the way to implement this capability. Where this is not possible, APIM can be used to provide this capability.
 ## Bicep
 
 Bicep 'Infrastructure as Code' files are included in this repo to provide an end to end deployment of this scenario that you can run in your own subscription.
@@ -31,6 +31,18 @@ The infrastructure we are creating focusses on
 ## APIM Policy
 
 An APIM policy provides the opportunity to manipulate requests that are proxied by API Management.
+
+```xml
+        <choose>
+            <when condition="@(new System.Random().Next(0,100) &gt;= {{MyTrafficSplitApp_TrafficSplitWeight}})">
+                <!-- Do not change backend service, use the default specified in the API definition -->
+            </when>
+            <otherwise>
+                <set-backend-service base-url="{{MyTrafficSplitApp_TrafficBaseUrlOverride}}" />
+            </otherwise>
+        </choose>
+```
+
 ## Load testing
 
 In order to test the traffic splitting we need to send a lot of traffic through APIM.
