@@ -70,7 +70,7 @@ render piechart
 | app-app1-sqvskzhbllsbc | 16,912 |
 | app-app2-oastktr32gjrw | 993 |
 
-![pie chart](trafficsplitresultspie.png)
+<img src="trafficsplitresultspie.png" width=50% height=50%>
 
 We can see that we didn't miss the mark by much. After sending nearly 18000 requests, we aimed to split **5%** of the traffic away and have successfully separated exactly **5.55%** of the traffic to App2.
 
