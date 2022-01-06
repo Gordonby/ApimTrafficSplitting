@@ -1,6 +1,6 @@
 # Apim Traffic Splitting
 
-A demonstration of using APIM for traffic splitting, useful when the underlying service does not support traffic splitting or where the configuration of the api apps is breaking, necessitating a new deployment.
+A demonstration of using APIM for traffic splitting. This is useful when the underlying infrastructure service that APIM proxies to does not support traffic splitting or where the specific configuration of the your apps requires Azure API Management to be responsible for traffic management.
 
 ## Capability
 
