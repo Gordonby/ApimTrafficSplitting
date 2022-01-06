@@ -21,7 +21,7 @@ This can be leveraged in the following types of scenario;
 Where using an Azure service that supports traffic splitting (like [App Service](https://docs.microsoft.com/en-us/azure/app-service/deploy-staging-slots#route-traffic), or [Service Mesh](https://docs.microsoft.com/en-us/azure/aks/servicemesh-about) in AKS) that should be the way to implement this capability. Where this is not possible, APIM can be used to provide this capability.
 ## Bicep
 
-Bicep 'Infrastructure as Code' files are included in this repo to provide an end to end deployment of this scenario that you can run in your own subscription. The [bicep files](bicep) follow the App/Archetype/Foundation modular pattern that promote modular reuse.
+Bicep 'Infrastructure as Code' files are included in this repo to provide an end to end deployment of this scenario that you can run in your own subscription. The [bicep deployment](application/trafficsplitdemo.bicep) follows the App/Archetype/Foundation modular pattern that promote better modular reuse.
 
 The infrastructure we are creating focusses on
 
