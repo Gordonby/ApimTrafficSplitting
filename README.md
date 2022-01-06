@@ -40,12 +40,9 @@ The values for weight and override url are taken from [Named Values](https://doc
 
 ```xml
         <choose>
-            <when condition="@(new System.Random().Next(0,100) &gt;= {{MyTrafficSplitApp_TrafficSplitWeight}})">
-                <!-- Do not change backend service, use the default specified in the API definition -->
-            </when>
-            <otherwise>
+            <when condition="@(new System.Random().Next(1,100) &lt;= {{MyTrafficSplitApp_TrafficSplitWeight}})">
                 <set-backend-service base-url="{{MyTrafficSplitApp_TrafficBaseUrlOverride}}" />
-            </otherwise>
+            </when>
         </choose>
 ```
 
