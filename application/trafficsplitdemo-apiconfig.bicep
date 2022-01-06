@@ -6,8 +6,8 @@ param appInsightsName string
 @description('The default base URL for the API')
 param apiBaseUrl string
 
-@description('The Name of the API')
-param apiName string = 'MyTrafficSplitApp'
+@description('The Name of the API, used in the named value entries and must match the traffic split policy')
+param apiName string
 
 @description('The baseUrl to override the primary API with')
 param apiOverrideUrl string

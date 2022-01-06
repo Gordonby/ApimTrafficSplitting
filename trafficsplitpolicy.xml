@@ -1,7 +1,7 @@
 <policies>
     <inbound>
         <choose>
-            <when condition="@(new System.Random().Next(0,100) &gt; {{MyTrafficSplitApp_TrafficSplitWeight}})">
+            <when condition="@(new System.Random().Next(0,100) &gt;= {{MyTrafficSplitApp_TrafficSplitWeight}})">
                 <!-- Do not change backend service, use the default specified in the API definition -->
             </when>
             <otherwise>
