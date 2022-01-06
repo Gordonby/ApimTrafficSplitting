@@ -21,7 +21,7 @@ The infrastructure that is created focusses on
 - 2 Function Apps with the dummy API
 - App Insights to log the function App telemetry
 
-However over 16 Azure resources are created to support the one click deployment.
+However 16 Azure resources are for the application stack.
 
 ## Module deployment view
 
