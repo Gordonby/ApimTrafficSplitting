@@ -29,7 +29,7 @@ The infrastructure we are creating focusses on
 - 2 Function Apps with the dummy API
 - App Insights to log the function App telemetry
 
-The bicep deployment deploys the code to the Function Apps as well as all the necessary configuration of APIM.
+The bicep deployment deploys the code to the Function Apps as well as all the necessary configuration of APIM. No manual configuration or scripts are needed to create a fully functioning deployment.
 
 ## APIM Policy
 
@@ -53,6 +53,8 @@ The values for weight and override url are taken from [Named Values](https://doc
 
 In order to test the traffic splitting we need to send a lot of traffic through APIM.
 [Azure Load Testing](https://azure.microsoft.com/en-gb/services/load-testing/) provides an easy way to send bulk requests, simulated from multiple users.
+
+> The Azure Load Testing service is not included in the bicep files as it is currently in preview with some notable limitations in automating.
 
 ## The results
 
