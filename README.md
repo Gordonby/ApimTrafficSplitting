@@ -23,14 +23,7 @@ Where using an Azure service that supports traffic splitting (like [App Service]
 
 Bicep 'Infrastructure as Code' files are included in this repo to provide an end to end deployment of this scenario that you can run in your own subscription. The [bicep deployment](application/trafficsplitdemo.bicep) follows the App/Archetype/Foundation modular pattern that promote better modular reuse.
 
-The infrastructure we are creating focusses on
-
-- API Management
-- 2 Function Apps with the dummy API
-- App Insights to log the function App telemetry
-
-The bicep deployment deploys the code to the Function Apps as well as all the necessary configuration of APIM. No manual configuration or scripts are needed to create a fully functioning deployment.
-Deployment takes approximately 10 minutes and creates/configures 16 Azure services.
+To read more about the bicep structure and deployment [click me](bicep.md).
 
 ## APIM Policy
 
