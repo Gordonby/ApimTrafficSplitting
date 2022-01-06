@@ -1,4 +1,5 @@
 # Apim Traffic Splitting
+
 A demonstration of using APIM for traffic splitting, useful when the underlying service does not support traffic splitting or where the configuration of the api apps is breaking, necessitating a new deployment.
 
 ## Capability
@@ -20,7 +21,7 @@ This can be leveraged in the following types of scenario;
 Where using an Azure service that supports traffic splitting (like [App Service](https://docs.microsoft.com/en-us/azure/app-service/deploy-staging-slots#route-traffic), or [Service Mesh](https://docs.microsoft.com/en-us/azure/aks/servicemesh-about) in AKS) that should be the way to implement this capability. Where this is not possible, APIM can be used to provide this capability.
 ## Bicep
 
-Bicep 'Infrastructure as Code' files are included in this repo to provide an end to end deployment of this scenario that you can run in your own subscription.
+Bicep 'Infrastructure as Code' files are included in this repo to provide an end to end deployment of this scenario that you can run in your own subscription. The [bicep files](bicep) follow the App/Archetype/Foundation modular pattern that promote modular reuse.
 
 The infrastructure we are creating focusses on
 
@@ -31,6 +32,7 @@ The infrastructure we are creating focusses on
 ## APIM Policy
 
 An APIM policy provides the opportunity to manipulate requests that are proxied by API Management.
+The policy overrides the base-url based on the comparison of the randomly generated number and the specified traffic weight split value.
 
 ```xml
         <choose>
@@ -46,7 +48,8 @@ An APIM policy provides the opportunity to manipulate requests that are proxied 
 ## Load testing
 
 In order to test the traffic splitting we need to send a lot of traffic through APIM.
-Azure Load Testing provides an easy way to send bulk requests, simulated from multiple users.
+[Azure Load Testing](https://azure.microsoft.com/en-gb/services/load-testing/) provides an easy way to send bulk requests, simulated from multiple users.
+
 ## The results
 
 The following Log Analytics query can be run to show the traffic split
