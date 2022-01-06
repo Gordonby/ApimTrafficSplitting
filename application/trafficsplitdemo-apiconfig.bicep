@@ -2,7 +2,12 @@ param resNameSeed string
 param apimName string
 param apimLoggerId string
 param appInsightsName string
+
+@description('The default base URL for the API')
 param apiBaseUrl string
+
+@description('The Name of the API')
+param apiName string = 'MyTrafficSplitApp'
 
 @description('The baseUrl to override the primary API with')
 param apiOverrideUrl string
@@ -20,29 +25,36 @@ resource apim 'Microsoft.ApiManagement/service@2021-01-01-preview' existing = {
   name: apimName
 }
 
+var namedValueBaseUrl = '${apiName}_TrafficBaseUrlOverride'
 @description('This is used by a policy to know where to send the traffic in case of overriding the backend')
 resource apimTrafficSplitAppConfig 'Microsoft.ApiManagement/service/namedValues@2021-08-01' = {
   parent: apim
-  name: 'appOverrideBaseUrl'
+  name: namedValueBaseUrl
   properties: {
-    displayName: 'TrafficSplitConfigTarget'
+    displayName: namedValueBaseUrl
     secret: false
     value: apiOverrideUrl
+    tags: [
+      'createdby_trafficsplitdemobicep'
+    ]
   }
 }
 
+var namedValueSplitWeight = '${apiName}_TrafficSplitWeight'
 @description('This is used to indicate what percentage of traffic to override with the appOverrideBaseUrl')
 resource apimTrafficSplitPercentConfig 'Microsoft.ApiManagement/service/namedValues@2021-08-01' = {
   parent: apim
-  name: 'appOverrideTrafficWeight'
+  name: namedValueSplitWeight
   properties: {
-    displayName: 'TrafficSplitConfigPercentage'
+    displayName: namedValueSplitWeight
     secret: false
     value: '${apiOverrideWeight}'
+    tags: [
+      'createdby_trafficsplitdemobicep'
+    ]
   }
 }
 
-var apiName = 'MyTrafficSplitApp'
 @description('Using a module to uniformly create api')
 module appApi '../foundation/apim-api.bicep' = {
   name: 'appApi-apim-${resNameSeed}'

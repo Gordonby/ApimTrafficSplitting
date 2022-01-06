@@ -51,5 +51,6 @@ module apiConfig 'trafficsplitdemo-apiconfig.bicep' = {
     resNameSeed: resNameSeed
     appInsightsName: app1.outputs.AppInsightsName
     apiOverrideUrl: 'https://${app2.outputs.ApplicationUrl}'
+    requireSubscriptionForApis: false
   }
 }
