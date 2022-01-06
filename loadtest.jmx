@@ -33,7 +33,7 @@
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
             <collectionProp name="Arguments.arguments"/>
           </elementProp>
-          <stringProp name="HTTPSampler.domain">apim-trafficsplitdemo-con-bakuzhxre4joe.azure-api.net</stringProp>
+          <stringProp name="HTTPSampler.domain">apim-trafficsplitdemo-con-chfuc43gl2qei.azure-api.net</stringProp>
           <stringProp name="HTTPSampler.port"></stringProp>
           <stringProp name="HTTPSampler.protocol">https</stringProp>
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>

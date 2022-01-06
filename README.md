@@ -30,6 +30,7 @@ The infrastructure we are creating focusses on
 - App Insights to log the function App telemetry
 
 The bicep deployment deploys the code to the Function Apps as well as all the necessary configuration of APIM. No manual configuration or scripts are needed to create a fully functioning deployment.
+Deployment takes approximately 10 minutes and creates/configures 16 Azure services.
 
 ## APIM Policy
 
@@ -55,6 +56,8 @@ In order to test the traffic splitting we need to send a lot of traffic through 
 
 > The Azure Load Testing service is not included in the bicep files as it is currently in preview with some notable limitations in automating.
 
+To create the load test in your own subscription, use the Portal and the JMX file in this repo. Replace the value of `HTTPSampler.domain` in the XML file for the endpoint of your APIM.
+
 ## The results
 
 The following Log Analytics query can be run to show the traffic split
@@ -68,12 +71,12 @@ render piechart
 
 | AppRoleName | count_ |
 | ----------- | ------ |
-| app-app1-sqvskzhbllsbc | 16,912 |
-| app-app2-oastktr32gjrw | 993 |
+| app-app1-sqvskzhbllsbc | 68,073 |
+| app-app2-oastktr32gjrw | 3,626 |
 
 <img src="trafficsplitresultspie.png" width=50% height=50%>
 
-We can see that we didn't miss the mark by much. After sending nearly 18000 requests, we aimed to split **5%** of the traffic away and have successfully separated exactly **5.55%** of the traffic to App2.
+We can see that we didn't miss the mark by much. After sending over 70000 requests, we aimed to split **5%** of the traffic away and have successfully separated exactly **5.06%** of the traffic to App2.
 
 ## Further Reading
 
